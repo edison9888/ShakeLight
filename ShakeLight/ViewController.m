@@ -559,7 +559,7 @@
 }
 //推荐页面关闭时通知
 - (void)MobiSageDidCloseRecommendModalView {
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"pushedCommit"]) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"pushedCommit"] && [[NSUserDefaults standardUserDefaults] integerForKey:@"deleteAD"] != 1) {
         [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"deleteAD"];
     }
 }
