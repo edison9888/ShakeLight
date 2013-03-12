@@ -7,6 +7,7 @@
 //
 
 #import "SetingViewController.h"
+#import "RNExpandingButtonBar.h"
 
 static int audioMode = 1;
 
@@ -16,7 +17,7 @@ static int audioMode = 1;
 
 @implementation SetingViewController
 
-@synthesize myRadioBt1,myRadioBt2,myRadioBt3,myBackBt;
+@synthesize myRadioBt1,myRadioBt2,myRadioBt3,myBackBt,myBg,myList,myTitle;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +31,11 @@ static int audioMode = 1;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    if (iPhone5) {
+        [myBg setFrame:CGRectMake(0, 0, 320, 568)];
+        [myTitle setFrame:CGRectMake(8, 0, 304, 46.5)];
+        [myList setFrame:CGRectMake(64, 85, 208, 140)];
+    }
     switch (audioMode) {
         case 1:
             [myRadioBt1 setImage:[UIImage imageNamed:@"radioDown.png"] forState:UIControlStateNormal];

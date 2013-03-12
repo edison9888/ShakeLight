@@ -14,6 +14,9 @@
 @property(nonatomic,strong)IBOutlet UIButton *myRadioBt2;
 @property(nonatomic,strong)IBOutlet UIButton *myRadioBt3;
 @property(nonatomic,strong)IBOutlet UIButton *myBackBt;
+@property(nonatomic,strong)IBOutlet UIImageView *myBg;
+@property(nonatomic,strong)IBOutlet UIImageView *myTitle;
+@property(nonatomic,strong)IBOutlet UIImageView *myList;
 
 -(IBAction)btPressed:(id)sender;
 +(int)getMode;

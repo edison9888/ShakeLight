@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A122811316EDFBF0001392B1 /* Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = A122811216EDFBE3001392B1 /* Toast.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A122811616EDFE53001392B1 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A122811416EDFE46001392B1 /* AudioToolbox.framework */; };
 		A1A194F016EC2A0800227506 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A194EF16EC2A0800227506 /* UIKit.framework */; };
 		A1A194F216EC2A0800227506 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A194F116EC2A0800227506 /* Foundation.framework */; };
 		A1A194F416EC2A0800227506 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1A194F316EC2A0800227506 /* CoreGraphics.framework */; };
@@ -61,6 +63,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A122811116EDFBE3001392B1 /* Toast.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Toast.h; sourceTree = "<group>"; };
+		A122811216EDFBE3001392B1 /* Toast.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Toast.m; sourceTree = "<group>"; };
+		A122811416EDFE46001392B1 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A1A194EC16EC2A0800227506 /* ShakeLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShakeLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A194EF16EC2A0800227506 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A1A194F116EC2A0800227506 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -131,6 +136,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A122811616EDFE53001392B1 /* AudioToolbox.framework in Frameworks */,
 				A1A1955B16EC8ED500227506 /* StoreKit.framework in Frameworks */,
 				A1A1955A16EC8ED000227506 /* MessageUI.framework in Frameworks */,
 				A1A1955916EC8ECB00227506 /* CoreTelephony.framework in Frameworks */,
@@ -171,6 +177,7 @@
 		A1A194EE16EC2A0800227506 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A122811416EDFE46001392B1 /* AudioToolbox.framework */,
 				A1A1955216EC8E9200227506 /* AVFoundation.framework */,
 				A1A1955016EC8E8400227506 /* libz.dylib */,
 				A1A1954E16EC8E7800227506 /* QuartzCore.framework */,
@@ -200,6 +207,8 @@
 				A1A1955D16EC8F1D00227506 /* RNExpandingButtonBar.m */,
 				A1A1955F16EC8F2C00227506 /* URBAlertView.h */,
 				A1A1955E16EC8F2C00227506 /* URBAlertView.m */,
+				A122811116EDFBE3001392B1 /* Toast.h */,
+				A122811216EDFBE3001392B1 /* Toast.m */,
 				A1A1956F16EC924900227506 /* MobiSageSDK */,
 				A1A1954016EC8E1A00227506 /* UMAnalytics_Sdk_2.1.3.OpenUDID */,
 				A1A194F616EC2A0800227506 /* Supporting Files */,
@@ -358,6 +367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A122811316EDFBF0001392B1 /* Toast.m in Sources */,
 				A1A195F016EC926E00227506 /* SetingViewController.m in Sources */,
 				A1A195F116EC926E00227506 /* RNExpandingButtonBar.m in Sources */,
 				A1A195F216EC926E00227506 /* URBAlertView.m in Sources */,
@@ -454,6 +464,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShakeLight/ShakeLight-Prefix.pch";
 				INFOPLIST_FILE = "ShakeLight/ShakeLight-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ShakeLight/UMAnalytics_Sdk_2.1.3.OpenUDID\"",
@@ -472,6 +483,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ShakeLight/ShakeLight-Prefix.pch";
 				INFOPLIST_FILE = "ShakeLight/ShakeLight-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/ShakeLight/UMAnalytics_Sdk_2.1.3.OpenUDID\"",
@@ -502,6 +514,7 @@
 				A1A1951116EC2A0800227506 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -13,16 +13,18 @@
 #import "math.h"
 #include <sys/socket.h>
 #include <ifaddrs.h>
+#import "Toast.h"
+#import <AudioToolbox/AudioToolbox.h>
 
 #define toRad(X) (X*M_PI/180.0)
 #define toDeg(X) (X*180.0/M_PI)
-#define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @interface ViewController (){
     AVCaptureDevice *device;
     BOOL close;
     BOOL isFlash;
     BOOL deleteAD;
+    BOOL sosFlag;
     NSTimeInterval now;
     UIAlertView *alertProcess;
     
@@ -76,6 +78,10 @@
     [compassView setAutoresizesSubviews:NO];
     [self.view addSubview:compassView];
     
+    if (iPhone5) {
+        [myBg setFrame:CGRectMake(0, 0, 320, 568)];
+    }
+    
     if([[NSUserDefaults standardUserDefaults] objectForKey:@"twiceLaunch"] == nil){
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"twiceLaunch"];
         URBAlertView *alertView = [URBAlertView dialogWithTitle:@"温馨提示" subtitle:@"亲，感谢您对我们产品的使用！仅当您的手机处于wifi状态下时，我们才会给您进行广告推送，wifi状态下不会产生付费流量，希望得到您的谅解！"];
@@ -83,6 +89,10 @@
         [alertView setFrame:CGRectMake(alertView.bounds.origin.x, alertView.bounds.origin.y, alertView.bounds.size.width, alertView.bounds.size.height + 30)];
         [alertView addButtonWithTitle:@"确定"];
         [alertView setHandlerBlock:^(NSInteger buttonIndex, URBAlertView *alertView) {
+            [[ToastSettings getSharedSettings] setGravity:ToastGravityBottom];
+            Toast* mToast = [Toast makeText:@"摇一摇就可以控制手电筒的开关呦！"];
+            [mToast setDuration:4000];
+            [mToast show];
             [alertView hideWithCompletionBlock:^{
                 // stub
             }];
@@ -182,6 +192,7 @@
 
 -(void)mosCodeInit{
     mosCode = 0;
+    sosFlag = YES;
     if (timerShine) {
         [timerShine invalidate];
         timerShine = nil;
@@ -194,6 +205,7 @@
         [timerShine invalidate];
         timerShine = nil;
     }
+    sosFlag = NO;
 }
 
 - (UIViewController *)viewControllerForPresentingModalView {
@@ -248,7 +260,7 @@
         [myBtn setImage:[UIImage imageNamed:@"off.png"] forState:UIControlStateNormal];
         [self openTorch:NO];
         [myBg setImage:[UIImage imageNamed:@"lightOff.png"]];
-        if ([SetingViewController getMode] == 2) {
+        if ([SetingViewController getMode] == 2 && !sosFlag) {
             [[UIApplication sharedApplication] performSelector:@selector(terminateWithSuccess)];
         }
         myBg.tag = 0;
@@ -266,7 +278,9 @@
             if ([self getNetType] == 1) {
                 myAdBar = [[MobiSageAdBanner alloc] initWithAdSize:Ad_320X50 withDelegate:self];
                 [self.view addSubview:myAdBar];
+                [compassView removeFromSuperview];
                 [compassView setFrame:CGRectMake(215, 56, compassSize.width/2, compassSize.height/2)];
+                [self.view addSubview:compassView];
             }
         }
     }
@@ -438,7 +452,7 @@
             }];
         }];
         [alertView showWithAnimation:URBAlertAnimationFlipHorizontal];
-    }else if ([[NSUserDefaults standardUserDefaults] boolForKey:@"pushedCommit"]) {
+    }else if ([[NSUserDefaults standardUserDefaults] integerForKey:@"deleteAD"] == 2) {
         URBAlertView *alertView = [URBAlertView dialogWithTitle:@"去除广告" subtitle:@"亲，感谢您下载应用推荐中的应用，确定要去除广告吗？"];
         alertView.blurBackground = NO;
         [alertView addButtonWithTitle:@"确定"];
@@ -522,12 +536,13 @@
  * Delegate methods of UIAccelerometerDelegate
  * -------------------------------------------------------*/
 - (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration{    
-    if (fabsf(acceleration.x)>1.5||
-        fabsf(acceleration.y)>1.5||
-        fabsf(acceleration.z)>1.5) {
+    if (fabsf(acceleration.x)>1.8||
+        fabsf(acceleration.y)>1.8||
+        fabsf(acceleration.z)>1.8) {
         if ([[NSDate date] timeIntervalSinceReferenceDate]*1000 - now > 1000) {
-            if ([SetingViewController getMode] != 3) {
+            if ([SetingViewController getMode] != 3 && !sosFlag) {
                 [self lightSwitch];
+                AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
             }
             now = [[NSDate date] timeIntervalSinceReferenceDate]*1000;
         }
@@ -545,7 +560,7 @@
 //推荐页面关闭时通知
 - (void)MobiSageDidCloseRecommendModalView {
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"pushedCommit"]) {
-        deleteAD = true;
+        [[NSUserDefaults standardUserDefaults] setInteger:2 forKey:@"deleteAD"];
     }
 }
 
