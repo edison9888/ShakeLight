@@ -40,6 +40,7 @@
 -(void)lightSwitch;
 -(void)mosCodeInit;
 -(void)mosCodeClose;
+-(void)terminate;
 
 -(void)onSOS;
 -(void)onSet;
@@ -261,11 +262,18 @@
         [self openTorch:NO];
         [myBg setImage:[UIImage imageNamed:@"lightOff.png"]];
         if ([SetingViewController getMode] == 2 && !sosFlag) {
-            [[UIApplication sharedApplication] performSelector:@selector(terminateWithSuccess)];
+            Toast* mToast = [Toast makeText:@"极简模式，手电筒即将自动关闭！"];
+            [mToast setDuration:3000];
+            [mToast show];
+            [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(terminate) userInfo:nil repeats:YES];
         }
         myBg.tag = 0;
         myBtn.tag = 0;
     }
+}
+
+-(void)terminate{
+    [[UIApplication sharedApplication] performSelector:@selector(terminateWithSuccess)];
 }
 
 -(void)addRecommend{
@@ -541,8 +549,8 @@
         fabsf(acceleration.z)>1.8) {
         if ([[NSDate date] timeIntervalSinceReferenceDate]*1000 - now > 1000) {
             if ([SetingViewController getMode] != 3 && !sosFlag) {
-                [self lightSwitch];
                 AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+                [self lightSwitch];
             }
             now = [[NSDate date] timeIntervalSinceReferenceDate]*1000;
         }
