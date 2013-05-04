@@ -262,7 +262,8 @@
         [self openTorch:NO];
         [myBg setImage:[UIImage imageNamed:@"lightOff.png"]];
         if ([SetingViewController getMode] == 2 && !sosFlag) {
-            Toast* mToast = [Toast makeText:@"极简模式，手电筒即将自动关闭！"];
+            [[ToastSettings getSharedSettings] setGravity:ToastGravityCenter];
+            Toast* mToast = [Toast makeText:@"极简模式，手电筒应用即将自动关闭！"];
             [mToast setDuration:3000];
             [mToast show];
             [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(terminate) userInfo:nil repeats:YES];

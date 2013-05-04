@@ -60,6 +60,7 @@
 		A1A195F016EC926E00227506 /* SetingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A1956016EC8F4A00227506 /* SetingViewController.m */; };
 		A1A195F116EC926E00227506 /* RNExpandingButtonBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A1955D16EC8F1D00227506 /* RNExpandingButtonBar.m */; };
 		A1A195F216EC926E00227506 /* URBAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A1955E16EC8F2C00227506 /* URBAlertView.m */; };
+		A1B1EA041701D4210026699E /* iTunesArtwork in Resources */ = {isa = PBXBuildFile; fileRef = A1B1EA031701D4210026699E /* iTunesArtwork */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -129,6 +130,7 @@
 		A1A1957516EC924900227506 /* MobiSageSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobiSageSDK.h; sourceTree = "<group>"; };
 		A1A1957616EC924900227506 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		A1A1957716EC924900227506 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		A1B1EA031701D4210026699E /* iTunesArtwork */ = {isa = PBXFileReference; lastKnownFileType = file; path = iTunesArtwork; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +221,7 @@
 		A1A194F616EC2A0800227506 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A1B1EA031701D4210026699E /* iTunesArtwork */,
 				A1A1953C16EC8DD500227506 /* Icon.png */,
 				A1A1953D16EC8DD500227506 /* Icon@2x.png */,
 				A1A1951216EC8BEF00227506 /* plusDown@2x.png */,
@@ -357,6 +360,7 @@
 				A1A1953E16EC8DD500227506 /* Icon.png in Resources */,
 				A1A1953F16EC8DD500227506 /* Icon@2x.png in Resources */,
 				A1A195D016EC924900227506 /* MobiSageRecommendBundle.bundle in Resources */,
+				A1B1EA041701D4210026699E /* iTunesArtwork in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
